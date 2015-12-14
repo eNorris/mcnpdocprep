@@ -14,7 +14,7 @@
 
 \chapter{Introduction}
 
-Why did I write this book? The manual sucks.
+Why did I write this book? The manual sucks. LOL, not really. But it does. A lot.
 
 \section{Forewarning}
 First, reader be forewarned, the contents herein pertain to MCNP6. Since MCNP6 was based directly on MCNP5 (and hence earlier versions), many of the same concepts can be drag-and-dropped verbatim. However, there are some differences between the two. MCNP6 was a merger between the standard at the time, MCNP5 and MCNPX.
@@ -41,12 +41,49 @@ Uh, yeah, there might be some.
 
 \chapter{A Crash Course}
 
-I suspect that some readers require more of an immediate start as opposed to an in depth documentary on the inricacies of each and every option MCNP6 has to offer. They are more interesting in running a simple problem or modifying an existing input file to perform some additional calculation.
+I suspect that some readers require more of an immediate start as opposed to an in depth documentary on the intricacies of each and every option MCNP6 has to offer. They are more interesting in running a simple problem or modifying an existing input file to perform some additional calculation.
 
 This chapter will do two things; first it will go over the overall structure of a MCNP6 input, second, it will provide a single-chapter crash course on running an input file for those that simple need to run a file.
 
+\section{Anatomy of an Input File}
+
+An input file is split into three sections called decks. The first deck, contains the problem title card and the cells in the problem. The second deck contains surfaces used to compose the cells in the aforementioned deck. Finally, the last deck contains everything else in the file such as material compositions, source specifications, and tally information, needed to run MCNP. The three decks are traditionally called the cell deck, surface deck, and data deck respectively to reflect their purpose.
+
 \chapter{Surfaces}
-They are smooth. Usually.
+Surfaces are the most primitive geometric objects in MCNP. Surfaces are defined by a mathematic equation in 3D space. Surfaces can be planes, cylinders, toroidal, or one of many other types. Each type of surface in MCNP is defined by a mnemonic that identifies it and informs MCNP which type of surface it is.
+
+\begin{tabular}{ |l|l|l|l| }
+  \hline
+  Mnemonic & Description & Equation & Variables  \\ \hline 
+  P & Arbitrary Plane & $x$ & $x$ \\
+  PX & Plane perpendicular to X axis & $x$ & $x$ \\
+  PY & Plane perpendicular to Y axis & $x$ & $x$ \\
+  PZ & Plane perpendicular to Z axis & $x$ & $x$ \\ \hline 
+  S  & Arbitrary sphere & $x$ & $x$ \\
+  SX  & Sphere centered on X axis & $x$ & $x$ \\
+  SY  & Sphere centered on Y axis & $x$ & $x$ \\
+  SZ  & Sphere centered on Z axis & $x$ & $x$ \\
+  SO  & Sphere centered at origin & $x$ & $x$ \\ \hline
+  C/X & Cylinder parallel to X axis & $x$ & $x$ \\
+  C/Y & Cylinder parallel to Y axis & $x$ & $x$ \\
+  C/Z & Cylinder parallel to Z axis & $x$ & $x$ \\
+  CX & Cylinder centered along X axis & $x$ & $x$ \\
+  CY & Cylinder centered along Y axis & $x$ & $x$ \\
+  CZ & Cylinder centered along Z axis & $x$ & $x$ \\ \hline
+  K/X & Cone parallel to X axis & $x$ & $x$ \\
+  K/Y & Cone parallel to Y axis & $x$ & $x$ \\
+  K/Z & Cone parallel to Z axis & $x$ & $x$ \\
+  KX & Cone centered on X axis & $x$ & $x$ \\
+  KY & Cone centered on Y axis & $x$ & $x$ \\
+  KZ & Cone centered on Z axis & $x$ & $x$ \\ \hline
+  \hline
+\end{tabular}
+
+The first and foremost piece of advice I have for anyone writing MCNP files, particularly if the geometry is hard complex or otherwise difficult to visualize, don't start writing your input file until every surface and cell is drawn and labeled with pen and paper!
+
+My second piece of advice is to adopt a numbering convention throughout your input file and remain consistent.
+
+\section{Examples}
 Use pen and paper!
 
 \section*{Problems}
