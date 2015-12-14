@@ -19,11 +19,21 @@ Why did I write this book? The manual sucks. LOL, not really. But it does. A lot
 \section{Forewarning}
 First, reader be forewarned, the contents herein pertain to MCNP6. Since MCNP6 was based directly on MCNP5 (and hence earlier versions), many of the same concepts can be drag-and-dropped verbatim. However, there are some differences between the two. MCNP6 was a merger between the standard at the time, MCNP5 and MCNPX.
 
+If discrepancies are found, always err on the side of the manual.
+
+This book is not comprehensive, it should be regarded as an aide in learning the foundations of MCNP.
+
 <Purpose of 5/X>
 
 Every version of MCNP comes with a comprehensive manual with the code itself.
 
 \section{Obtaining MCNP6}
+
+MCNP must be obtained through the Radiation Safety Information Computational Center at Oak Ridge National Laboratory (https://rsicc.ornl.gov). MCNP is written and maintained by scientists at Los Alamos National Laboratory, funded by the U. S. Department of Energy. As government code developed for analysis of nuclear systems, it is heavily regulated. MCNP itself is subject to 10 CFR \textsection 810.
+
+Particularly for non-U.S. citizens.
+
+The Fortran source code is under special restriction
 
 Go to the RSICC.
 
@@ -50,6 +60,10 @@ This chapter will do two things; first it will go over the overall structure of 
 An input file is split into three sections called decks. The first deck, contains the problem title card and the cells in the problem. The second deck contains surfaces used to compose the cells in the aforementioned deck. Finally, the last deck contains everything else in the file such as material compositions, source specifications, and tally information, needed to run MCNP. The three decks are traditionally called the cell deck, surface deck, and data deck respectively to reflect their purpose.
 
 \chapter{Surfaces}
+There are a couple different kinds of surfaces.
+
+\section{Surfaces Defined by Equations}
+
 Surfaces are the most primitive geometric objects in MCNP. Surfaces are defined by a mathematic equation in 3D space. Surfaces can be planes, cylinders, toroidal, or one of many other types. Each type of surface in MCNP is defined by a mnemonic that identifies it and informs MCNP which type of surface it is.
 
 \begin{tabular}{ |l|l|l|l| }
@@ -76,8 +90,18 @@ Surfaces are the most primitive geometric objects in MCNP. Surfaces are defined 
   KX & Cone centered on X axis & $x$ & $x$ \\
   KY & Cone centered on Y axis & $x$ & $x$ \\
   KZ & Cone centered on Z axis & $x$ & $x$ \\ \hline
+  SQ & 2$^{nd}$ order equation parallel to axis & $x$ & $x$ \\
+  GQ & Arbitrary 2$^{nd}$ order equation & $x$ & $x$ \\ \hline
+  TX & Torus parallel to X axis & $x$ & $x$ \\
+  TY & Torus parallel to Y axis & $x$ & $x$ \\
+  TZ & Torus parallel to Z axis & $x$ & $x$ \\
   \hline
 \end{tabular}
+
+\section{Macrobodies}
+There are a number of geometric volumes used repeatedly that can be constructed out of the simple 
+
+\section{Practice}
 
 The first and foremost piece of advice I have for anyone writing MCNP files, particularly if the geometry is hard complex or otherwise difficult to visualize, don't start writing your input file until every surface and cell is drawn and labeled with pen and paper!
 
@@ -150,6 +174,12 @@ They're all meshy.
 
 \section{Modeling real detectors}
 It's hard. I quit.
+
+\chapter{Debugging Problems}
+This chapter is devoted to finding and fixing problems. All problems can generally be split into one of two categories. The first category contains verbose, or fatal, errors. These errors cause the program to cease execution and usually print an error message (or just a stack trace of garbage). The second, while it is hard to believe, are much more severe: silent errors. Silent errors do not stop execution, nor do they produce warnings or messages to the user otherwise. They simply produce incorrect results.
+
+\section{Geometry Errors}
+This section will cover some simple, yet useful techniques to analyze geometry and identify errors.
 
 \chapter{Visualizing}
 If you're blind, just skip this chapter.
